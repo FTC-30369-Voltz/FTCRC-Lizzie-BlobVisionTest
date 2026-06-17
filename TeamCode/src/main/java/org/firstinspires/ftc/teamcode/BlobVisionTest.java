@@ -65,6 +65,11 @@ public class BlobVisionTest extends LinearOpMode {
                         telemetry.addData("Blob Y Position", llResult.getTy());
                         telemetry.addData("Percentage in View", llResult.getTa());
 
+                        /*
+                        Based on: https://docs.limelightvision.io/docs/docs-limelight/pipeline-retro/retro-theory
+                        and https://docs.limelightvision.io/docs/docs-limelight/tutorials/tutorial-estimating-distance
+                        */
+
                         double nx = ((double) 1 /320) * (llResult.getTx()-319.5);
                         double ny = ((double) 1 /240) * (llResult.getTx()-239.5);
                         double vpw = 2*Math.tan((54.505/2)*(3.14159/180));
