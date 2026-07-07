@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import com.qualcomm.robotcore.util.Range;
 import com.seattlesolvers.solverslib.drivebase.MecanumDrive;
 import com.seattlesolvers.solverslib.gamepad.GamepadEx;
 import com.seattlesolvers.solverslib.hardware.motors.Motor;
@@ -84,10 +85,10 @@ public class BlobVisionTest extends LinearOpMode {
                         telemetry.addData("Botpose", llResult.getBotpose());
 
                         if (Math.abs(llResult.getTx()) > 2) {
-                            turn = -(llResult.getTx()/20);
+                            turn = Range.clip(-(llResult.getTx()/20), -1, 1);
                         }
-                        if (Math.abs(distance) > 0.01) {
-                            forward = 0.5;
+                        if (Math.abs(distance) > 0.001) {
+                            forward = 0.25;
                         }
                     } else {
                         telemetry.addLine("Camera awaiting pipeline satisfying scenario");
